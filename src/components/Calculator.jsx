@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addNumber, minusNumber } from "../actions/counts";
+import useStyles from "./style";
 
 function Calculator(props) {
+  const propsStyles = { backgroundColor: "black", color: "white" };
   const [value, setValue] = useState(0);
+  const classes = useStyles(propsStyles);
 
   const handleClick = (actionName) => (e) => {
     props[actionName](value);
@@ -14,7 +17,7 @@ function Calculator(props) {
   };
 
   return (
-    <div>
+    <div className={classes.flex}>
       <p>Calculator</p>
       <input value={value} onChange={handleChange} type="number" />
       <button onClick={handleClick("add")}>Add</button>
